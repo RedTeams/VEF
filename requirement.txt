@@ -1,0 +1,6 @@
+shodan
+prettytable
+importlib
+requests
+dnspython
+gevent
