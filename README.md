@@ -77,4 +77,84 @@ If i miss any packages, please use pip3 to install.
 	-v, --version         show program version and exit
 	-u, --update          update vef
 
-Documentation is on the way.
+## Documentation
+### --list
+To list all the scripts.
+
+	starnight:VEF starnight$ python3 vef.py --list
+	{'root_path': '/Users/starnight/PycharmProjects/VEF'}
+	
+	         _  ___     _
+	        | |/ (_) __| |
+	        | ' /| |/ _` |
+	        | . \| | (_| |
+	        |_|\_\_|\__,_|
+	
+	-------------------------------------------------------------------
+	+-----+---------------------------+-------------------------------------------------+
+	| No. |           script          |                   description                   |
+	+-----+---------------------------+-------------------------------------------------+
+	|  1  | weblogic-cve-2019-2725.py | WebLogic Server unauthenticated (CVE-2019-2725) |
+	|  2  |     weblogic-upload.py    |       WebLogic file upload(CVE-2018-2894)       |
+	|  3  |       1-template.py       |          Tell me what this script does          |
+	|  4  | weblogic-cve-2019-2729.py |     WebLogic Deserialization(CVE-2019-2729)     |
+	|  5  |      weblogic-ssrf.py     |       WebLogic Server SSRF(CVE-2014-4210)       |
+	|  6  |      weblogic-wls.py      |     WebLogic Server WLS RCE(CVE-2017-10271)     |
+	|  7  | weblogic-cve-2017-3506.py |             Weblogic (CVE-2017-3506)            |
+	+-----+---------------------------+-------------------------------------------------+
+
+### --search
+To search script contains the keyword in script name or description.
+
+	starnight:VEF starnight$ python3 vef.py --search CVE-2017-10271
+	{'root_path': '/Users/starnight/PycharmProjects/VEF'}
+
+         _______  ______  _     ___ ___ _____  _  _____ ___ ___  _   _
+        | ____\ \/ /  _ \| |   / _ \_ _|_   _|/ \|_   _|_ _/ _ \| \ | |
+        |  _|  \  /| |_) | |  | | | | |  | | / _ \ | |  | | | | |  \| |
+        | |___ /  \|  __/| |__| |_| | |  | |/ ___ \| |  | | |_| | |\  |
+        |_____/_/\_\_|   |_____\___/___| |_/_/   \_\_| |___\___/|_| \_|
+	
+	-------------------------------------------------------------------
+	+-----+-----------------+-----------------------------------------+
+	| No. |      script     |               description               |
+	+-----+-----------------+-----------------------------------------+
+	|  1  | weblogic-wls.py | WebLogic Server WLS RCE(CVE-2017-10271) |
+	+-----+-----------------+-----------------------------------------+
+
+More documentation is on the way.
+
+## Framework and POC
+In my view, VEF is a concurrent exploitation framework, writing POC which can be used with VEF should be an easy job. 
+
+And, script should provide enough information to read. So i add a description in script, for adding simple description about what this script does.
+
+### Sample
+poc() function is the entrance of script, the args is the remote target you want to test in the form of ip:port.
+
+	#!/usr/bin/env python
+	# -*- coding: utf-8 -*-
+	
+	description = 'Tell me what this script does'
+	
+	def poc(target):
+	    """
+	    :param target:target ip:port
+	    :return:
+	    """
+	    try:
+	        # Step 1: Maybe need to construct target url first
+	        pass
+	
+	        # Step 2: Test for exploitation
+	        pass
+	
+	        # any steps further, to check whether vulnerable
+	
+	        if 'vulnerable' :
+	            return True
+	        else:
+	            return False
+	    except Exception:
+	        # anything wrong, return False
+	        return False
