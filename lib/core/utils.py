@@ -38,6 +38,23 @@ def read_conf(path, section, key):
     return value
 
 
+def write_conf(path, section, key, value):
+    """
+    读取配置文件中的信息
+    :param path: 配置文件路径
+    :param section: 读取的section
+    :param key: 读取的字段
+    :param value: 设置的值
+    :return: None
+    """
+    config = ConfigParser()
+    config.read(path)
+    print('================================')
+    config.set(section, key, value)     # 设置字段值
+    config.write(open(path, "w"))
+    print('write to configuration file.')
+
+
 def print_args(args):
     """
     输出参数信息,检测参数是否出现问题

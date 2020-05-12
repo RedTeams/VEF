@@ -62,7 +62,7 @@ def run():
     thread_list = []
 
     # 加载攻击模块,放在外面作为参数传递给线程,这样在线程里就不用每次都去加载了,提高批量检测时的效率,因为是同一个payload
-    module = load_module(cmd_opts.script, description='')
+    module = load_module(cmd_opts.script)
 
     # 输出模块信息
     info('using : {}'.format(module))

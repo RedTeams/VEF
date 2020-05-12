@@ -4,7 +4,7 @@
 import importlib
 
 
-def load_module(script_name, description=''):
+def load_module(script_name):
     """
         Load attack script : 加载攻击脚本
     """
@@ -15,11 +15,4 @@ def load_module(script_name, description=''):
     # 动态导入模块
     module = importlib.import_module(module_name)
 
-    # 如果要的是脚本中的描述信息,即返回描述信息
-    if description != '':
-        if hasattr(module, description):
-            return module.description
-        else:
-            return 'No description about this script, please tell us what this script does!'
-    else:
-        return module
+    return module

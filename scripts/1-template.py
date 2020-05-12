@@ -5,6 +5,20 @@
 description = 'Tell me what this script does'
 
 
+def get_plugin_info():
+    """
+    插件描述信息
+    :return: plugin_info
+    """
+    plugin_info = {
+        "name": "weblogic-cve-2017-3506.py",
+        "author": "starnight_cyber",
+        "cve_no": "CVE-2017-3506",
+        "description": description,
+    }
+    return plugin_info
+
+
 def poc(target):
     """
     :param target:target ip:port

@@ -19,7 +19,7 @@ def initialize():
     check_dir_existence()
 
     # 加载脚本信息:名字和设置description
-    load_script_names()
+    load_plugin_info()
 
 
 def set_path():
@@ -58,14 +58,14 @@ def check_dir_existence():
         warning('You may not able to use resources files like weak_pass_dict files for brute-force')
     if not os.path.exists(path.scripts):
         error('The scripts directory is missing, no script is available. System exit!')
-    
 
-def load_script_names():
+
+def load_plugin_info():
     """
         load script names and description to scripts variable
         读取scripts目录中所有的.py脚本名字到scripts list中
     """
-
+    print('====>load_plugin_info')
     # 找出script下的所有.py脚本文件
     payloads = glob.glob(os.path.join(path.scripts, '*.py'))
     # print(payloads)
@@ -76,5 +76,5 @@ def load_script_names():
         script_name = os.path.basename(payload)
 
         # 从脚本库scripts目录读取脚本的描述信息, 设置成字典k-v的相关关系, dict[script_name]=description
-        scripts[script_name] = load_module(script_name, description='description')
-        # print('script_name : {} \t description : {}'.format(script_name, scripts[script_name]))
+        scripts[script_name] = load_module(script_name).get_plugin_info()
+        # print(scripts[script_name])

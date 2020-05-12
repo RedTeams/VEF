@@ -19,7 +19,7 @@ def cmd_opt_parser():
                                      '\tpython3 vef.py --shodan --query weblogic '
                                            '--script weblogic-wls.py --threads 10''\r\n'
                                      '\tpython3 vef.py --zoomeye --query weblogic --script weblogic-wls.py'
-                                           ' --offset 10 --limt 100''\r\n'
+                                           ' --offset 10 --limit 100''\r\n'
                                      '----------------------------------------------------------''\r\n'
                                      , add_help=False)
     # 线程控制相关

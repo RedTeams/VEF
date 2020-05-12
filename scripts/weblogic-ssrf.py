@@ -14,6 +14,20 @@ description = 'WebLogic Server SSRF(CVE-2014-4210)'
 """
 
 
+def get_plugin_info():
+    """
+    插件描述信息
+    :return: plugin_info
+    """
+    plugin_info = {
+        "name": "weblogic-ssrf.py",
+        "author": "starnight_cyber",
+        "cve_no": "CVE-2014-4210",
+        "description": description,
+    }
+    return plugin_info
+
+
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 5.1; rv:5.0) Gecko/20100101 Firefox/5.0",
     "Accept-Charset": "GBK,utf-8;q=0.7,*;q=0.3",

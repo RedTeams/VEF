@@ -3,7 +3,7 @@
 
 import requests
 import json
-from lib.core.utils import read_conf
+from lib.core.utils import read_conf, write_conf
 from lib.core.data import path
 from lib.core.output import info, error, warning
 from lib.core.data import cmd_opts
@@ -27,13 +27,15 @@ def zoomeye_api():
 
     global email, password, access_token
 
-    # 如果配置文件中,存在email和password字段,则使用该字段登陆zoomeye, 获取access_token
-    if email and password:
-        login(email, password)
-    else:
-        email = input('please input email : ')
-        password = input('please input password : ')
-        login(email, password)
+    # 如果配置文件中有
+    if not access_token:
+        # 如果配置文件中,存在email和password字段,则使用该字段登陆zoomeye, 获取access_token
+        if email and password:
+            login(email, password)
+        else:
+            email = input('please input email : ')
+            password = input('please input password : ')
+            login(email, password)
 
     info('==>access_token : {}'.format(access_token))
 
@@ -64,9 +66,11 @@ def init_zoomeye():
     global access_token, email, password
     email = read_conf(path.config, 'zoomeye', 'email')
     password = read_conf(path.config, 'zoomeye', 'password')
+    access_token = read_conf(path.config, 'zoomeye', 'access_token')
 
     # 输出读取的配置文件信息
-    # info('zoomeye infomation \nemail : {} \npassword : {}\n'.format(email, password))
+    info('zoomeye infomation \nemail : {} \npassword : {}\naccess_token : {}\n'
+         ''.format(email, password, access_token))
 
     pass
 
@@ -96,6 +100,8 @@ def login(email, password):
         # 获取到账户的access_token
         global access_token
         access_token = r_decoded['access_token']
+        write_conf(path.config, 'zoomeye', 'access_token', access_token)   # 写入access_token
+        print('#######################################')
     except Exception:
         error('username or password is wrong, please check config file or input')
     pass

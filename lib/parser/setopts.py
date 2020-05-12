@@ -95,14 +95,17 @@ def show_scripts():
     使用PrettyTable 展示script目录下的所有脚本,名字及脚本功能描述信息
     :return: None
     """
-    table = PrettyTable(['No.', 'script', 'description'])
+    table = PrettyTable(['No.', 'script', 'author', 'cve_no','description'])
 
     index = 0
 
     # 从已经加载好的scripts中读取每一个item的k-v,写入到PrettyTable中
-    for (k, v) in scripts.items():
+    # for (k, v) in scripts.items():
+    #     index += 1
+    #     table.add_row([index, k, v])
+    for k, v in scripts.items():
         index += 1
-        table.add_row([index, k, v])
+        table.add_row([index, k, v['author'], v['cve_no'], v['description']])
 
     print(table)
 
@@ -254,14 +257,14 @@ def search_script(keyword):
     :param keyword: 关键字
     :return: None
     """
-    table = PrettyTable(['No.', 'script', 'description'])
+    table = PrettyTable(['No.', 'script', 'author', 'cve_no', 'description'])
     index = 0
 
     # scripts中存储了所有脚本的名字和description的k-v,直接使用即可
-    for k in scripts.keys():
-        if keyword in k or keyword in scripts[k]:            # 脚本名中存在该关键字
+    for k, v in scripts.items():
+        if keyword in k or keyword in v['description']:            # 脚本名中存在该关键字
             index += 1
-            table.add_row([index, k, scripts[k]])
+            table.add_row([index, k, v['author'], v['cve_no'], v['description']])
 
     print(table)
 
