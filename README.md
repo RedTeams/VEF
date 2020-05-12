@@ -18,7 +18,7 @@ And add a few features to use this project more smoothly.
 - Do not wanna to change the author's original idea about his work.
 - Will update POC.
 
-But i am a little lazy, just a little.
+Going to update POCs.
 
 ## Installation
 
@@ -81,46 +81,52 @@ If i miss any packages, please use pip3 to install.
 ### --list
 To list all the scripts.
 
-	starnight:VEF starnight$ python3 vef.py --list
-	{'root_path': '/Users/starnight/PycharmProjects/VEF'}
-	
-	         _  ___     _
-	        | |/ (_) __| |
-	        | ' /| |/ _` |
-	        | . \| | (_| |
-	        |_|\_\_|\__,_|
-	
-	-------------------------------------------------------------------
-	+-----+---------------------------+-------------------------------------------------+
-	| No. |           script          |                   description                   |
-	+-----+---------------------------+-------------------------------------------------+
-	|  1  | weblogic-cve-2019-2725.py | WebLogic Server unauthenticated (CVE-2019-2725) |
-	|  2  |     weblogic-upload.py    |       WebLogic file upload(CVE-2018-2894)       |
-	|  3  |       1-template.py       |          Tell me what this script does          |
-	|  4  | weblogic-cve-2019-2729.py |     WebLogic Deserialization(CVE-2019-2729)     |
-	|  5  |      weblogic-ssrf.py     |       WebLogic Server SSRF(CVE-2014-4210)       |
-	|  6  |      weblogic-wls.py      |     WebLogic Server WLS RCE(CVE-2017-10271)     |
-	|  7  | weblogic-cve-2017-3506.py |             Weblogic (CVE-2017-3506)            |
-	+-----+---------------------------+-------------------------------------------------+
+```
+python3 vef.py --list
+{'root_path': '/Users/starnight/GitHub/VEF'}
+====>load_plugin_info
+
+        __     _______ _____
+        \ \   / / ____|  ___|
+         \ \ / /|  _| | |_
+          \ V / | |___|  _|
+           \_/  |_____|_|
+
+-------------------------------------------------------------------
++-----+---------------------------+-----------------+----------------+-------------------------------------------------+
+| No. |           script          |      author     |     cve_no     |                   description                   |
++-----+---------------------------+-----------------+----------------+-------------------------------------------------+
+|  1  | weblogic-cve-2019-2725.py | starnight_cyber | CVE-2019-2725  | WebLogic Server unauthenticated (CVE-2019-2725) |
+|  2  |     weblogic-upload.py    | starnight_cyber | CVE-2018-2894  |       WebLogic file upload(CVE-2018-2894)       |
+|  3  |       1-template.py       | starnight_cyber | CVE-2017-3506  |          Tell me what this script does          |
+|  4  | weblogic-cve-2019-2729.py | starnight_cyber | CVE-2019-2729  |     WebLogic Deserialization(CVE-2019-2729)     |
+|  5  |      weblogic-ssrf.py     | starnight_cyber | CVE-2014-4210  |       WebLogic Server SSRF(CVE-2014-4210)       |
+|  6  |      weblogic-wls.py      | starnight_cyber | CVE-2017-10271 |     WebLogic Server WLS RCE(CVE-2017-10271)     |
+|  7  | weblogic-cve-2017-3506.py | starnight_cyber | CVE-2017-3506  |             Weblogic (CVE-2017-3506)            |
++-----+---------------------------+-----------------+----------------+-------------------------------------------------+
+```
 
 ### --search
 To search script contains the keyword in script name or description.
 
-	starnight:VEF starnight$ python3 vef.py --search CVE-2017-10271
-	{'root_path': '/Users/starnight/PycharmProjects/VEF'}
+```
+python3 vef.py --search CVE-2017-10271
+{'root_path': '/Users/starnight/GitHub/VEF'}
+====>load_plugin_info
 
          _______  ______  _     ___ ___ _____  _  _____ ___ ___  _   _
         | ____\ \/ /  _ \| |   / _ \_ _|_   _|/ \|_   _|_ _/ _ \| \ | |
         |  _|  \  /| |_) | |  | | | | |  | | / _ \ | |  | | | | |  \| |
         | |___ /  \|  __/| |__| |_| | |  | |/ ___ \| |  | | |_| | |\  |
         |_____/_/\_\_|   |_____\___/___| |_/_/   \_\_| |___\___/|_| \_|
-	
-	-------------------------------------------------------------------
-	+-----+-----------------+-----------------------------------------+
-	| No. |      script     |               description               |
-	+-----+-----------------+-----------------------------------------+
-	|  1  | weblogic-wls.py | WebLogic Server WLS RCE(CVE-2017-10271) |
-	+-----+-----------------+-----------------------------------------+
+
+-------------------------------------------------------------------
++-----+-----------------+-----------------+----------------+-----------------------------------------+
+| No. |      script     |      author     |     cve_no     |               description               |
++-----+-----------------+-----------------+----------------+-----------------------------------------+
+|  1  | weblogic-wls.py | starnight_cyber | CVE-2017-10271 | WebLogic Server WLS RCE(CVE-2017-10271) |
++-----+-----------------+-----------------+----------------+-----------------------------------------+
+```
 
 More documentation is on the way.
 
@@ -132,29 +138,47 @@ And, script should provide enough information to read. So i add a description in
 ### Sample
 poc() function is the entrance of script, the args is the remote target you want to test in the form of ip:port.
 
-	#!/usr/bin/env python
-	# -*- coding: utf-8 -*-
-	
-	description = 'Tell me what this script does'
-	
-	def poc(target):
-	    """
-	    :param target:target ip:port
-	    :return:
-	    """
-	    try:
-	        # Step 1: Maybe need to construct target url first
-	        pass
-	
-	        # Step 2: Test for exploitation
-	        pass
-	
-	        # any steps further, to check whether vulnerable
-	
-	        if 'vulnerable' :
-	            return True
-	        else:
-	            return False
-	    except Exception:
-	        # anything wrong, return False
-	        return False
+```
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
+description = 'Tell me what this script does'
+
+
+def get_plugin_info():
+    """
+    插件描述信息
+    :return: plugin_info
+    """
+    plugin_info = {
+        "name": "weblogic-cve-2017-3506.py",
+        "author": "starnight_cyber",
+        "cve_no": "CVE-2017-3506",
+        "description": description,
+    }
+    return plugin_info
+
+
+def poc(target):
+    """
+    :param target:target ip:port
+    :return:
+    """
+    try:
+        # Step 1: Maybe need to construct target url first
+        pass
+
+        # Step 2: Test for exploitation
+        pass
+
+        # any steps further, to check whether vulnerable
+
+        if 'vulnerable' :
+            return True
+        else:
+            return False
+    except Exception:
+        # anything wrong, return False
+        return False
+```
